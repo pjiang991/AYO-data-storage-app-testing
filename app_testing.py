@@ -407,7 +407,7 @@ def plotter_get_legend_ui():
 
 
 # -- MAIN --
-st.title("Supabase Auth + Experiment Viewer")
+st.title("Experiment Data Viewer")
 
 ensure_session_state()
 
