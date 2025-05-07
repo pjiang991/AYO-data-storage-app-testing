@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+.env
+.venv/
+venv/
+env/
+
+# Environment variables and secrets
+.env
+.env.local
+supabase/.temp/
+supabase/.env
+.supabase/
+
+# VS Code / IDEs
+.vscode/
+.idea/
+*.code-workspace
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Jupyter notebooks (optional)
+.ipynb_checkpoints/
+
+# Streamlit cache and config
+.streamlit/config.toml
+.streamlit/secrets.toml
+.streamlit/cache/
+
+# Node (if used)
+node_modules/
+npm-debug.log
+
+# Logs
+*.log
+
+# Misc
+identifier

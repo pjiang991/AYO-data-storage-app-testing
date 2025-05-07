@@ -321,6 +321,7 @@ def data_table_ui():
         df = ss["data_table"]
     
     # Make UI
+    st.info("Filters won't take effect unless you click on 'Apply filters'")
     if df is not None and not df.empty:
         cols = list(df.columns)
         cols.remove("plotted")
@@ -353,6 +354,8 @@ def data_table_ui():
     ss.update_needed = False
 
 def plotter_get_legend_ui():
+    if ss["data_table"] is None or ss["data_table"].empty:
+        return
     if len(ss.plotting_data) == 0:
         st.info("Check the ‘Plotted’ column above to display data.")
         return
