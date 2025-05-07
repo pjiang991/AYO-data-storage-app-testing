@@ -195,6 +195,7 @@ def login_ui():
             st.error(user)
         else:
             ss.user = user
+            ss.show_change_pwd = False
             st.success("Signed in!")
             st.rerun()
 
@@ -202,10 +203,14 @@ def signup_ui():
     st.header("Sign Up")
     email = st.text_input("Email", key="signup_email")
     password = st.text_input("Password", type="password", key="signup_pwd")
+    confirm_password = st.text_input("Confirm Password", type="password", key="signup_confirm_password")
     strength_msg = auth.check_password_strength(password)
+    passwords_match = password == confirm_password
     if strength_msg:
         st.warning(strength_msg)
-    if st.button("Create Account"):
+    if not passwords_match:
+        st.warning("Passwords don't match")
+    if st.button("Create Account", disabled=not (passwords_match and strength_msg is None)):
         user = auth.sign_up(email, password)
         if isinstance(user, str):
             st.error(user)
