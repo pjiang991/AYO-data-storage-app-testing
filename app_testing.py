@@ -64,6 +64,7 @@ def ensure_session_state():
         "show_change_pwd": False,
         "update_needed": True,
         "rows_per_page": 50,
+        "default_rows_per_page": 50,
         "current_page": 1,
         "total_pages": 1,
         "data_table": pd.DataFrame(),
@@ -290,11 +291,10 @@ def filters_ui():
             end_date = st.date_input("End Date", value=None)
             end_time = st.time_input("End Time", value=None)
         with col3:
-            rows_per_page = st.number_input("Rows per page", min_value=10, max_value=200, value=ss.rows_per_page, step=10)
+            ss.rows_per_page = st.number_input("Rows per page", min_value=10, max_value=200, value=ss.default_rows_per_page, step=10)
         ss.start_datetime = combine_datetime(start_date, start_time)
         ss.end_datetime = combine_datetime(end_date, end_time)
         
-        ss.rows_per_page = rows_per_page
         st.button("Apply Filters", on_click=lambda : setattr(ss, "action_name", "apply_filter"))
 
 def data_table_ui():
@@ -357,7 +357,7 @@ def plotter_get_legend_ui():
     if ss["data_table"] is None or ss["data_table"].empty:
         return
     if len(ss.plotting_data) == 0:
-        st.info("Check the ‘Plotted’ column above to display data.")
+        st.info("Check the ‘Plotted’ column above to plot data.")
         return
     try:
         keys = list(ss.plotting_data.keys())
